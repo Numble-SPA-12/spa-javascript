@@ -1,0 +1,15 @@
+{
+  "name": "spa-javascript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Numble-SPA-12/spa-javascript.git",
+  "author": "tooooo1 <wer4272@nate.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup src/main.js --file dist/main.js",
+    "start": "node dist/main.js"
+  },
+  "devDependencies": {
+    "rollup": "^3.9.1"
+  }
+}
