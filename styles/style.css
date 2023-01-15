@@ -110,3 +110,50 @@ ul {
   cursor: pointer;
   font-size: 1rem;
 }
+
+/* upload page */
+
+.btn_img_upload {
+  width: 100%;
+  border: 1.5px solid #e2e2e2;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  padding: 3rem 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form_title {
+  padding-top: 1rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+form > input {
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 13px 15px;
+}
+
+form > textarea {
+  border: none;
+  min-height: 100px;
+  padding: 13px 15px;
+}
+
+.btn_form {
+  border: none;
+  color: #ffffff;
+  background-color: #bb2649;
+  border-radius: 0.5rem;
+  padding: 1.4rem 0;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
