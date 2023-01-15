@@ -13,6 +13,7 @@ body {
 
 a {
   text-decoration: none;
+  color: #000000;
 }
 
 /* Header component */
@@ -45,14 +46,6 @@ header {
 
 /* PostList component */
 
-li {
-  border: 1.5px solid #e2e2e2;
-  border-radius: 0.5rem;
-  align-items: center;
-  gap: 1rem;
-  display: flex;
-}
-
 .content {
   display: flex;
   flex-direction: column;
@@ -67,6 +60,11 @@ li {
 }
 
 .post_item {
+  border: 1.5px solid #e2e2e2;
+  border-radius: 0.5rem;
+  align-items: center;
+  gap: 1rem;
+  display: flex;
   cursor: pointer;
 }
 
