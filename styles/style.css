@@ -39,6 +39,8 @@ section {
   gap: 1rem;
 }
 
+/* PostList component */
+
 li {
   border: 1.5px solid #e2e2e2;
   border-radius: 0.5rem;
@@ -53,17 +55,29 @@ li {
   gap: 0.6rem;
 }
 
-.brok {
-  width: 76px;
-  height: 76px;
-  background-color: red;
+.post_img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.5rem 0 0 0.5rem;
 }
 
-.h1 {
+.post_item {
+  cursor: pointer;
+}
+
+.post_title {
   font-weight: bold;
 }
 
-.p {
+.post_content {
   font-size: 13px;
   color: #777777;
+  font-weight: normal;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
