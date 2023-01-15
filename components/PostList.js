@@ -1,7 +1,5 @@
 export default function PostList({ $target, init }) {
-  const $post_list = document.createElement("ul");
-  $target.appendChild($post_list);
-
+  this.$target = $target;
   this.state = init;
 
   this.render = () => {
@@ -10,18 +8,22 @@ export default function PostList({ $target, init }) {
       return;
     }
 
-    $post_list.innerHTML = `${this.state
-      .map(
-        (post) =>
-          `<li class="post_item" key="${post.posdId}">
-              <img class="post_img" src="${post.image}" alt="${post.title}">
-              <div class="content">
-                <h1 class="post_title">${post.title}</h1>
-                <p class="post_content">${post.content}</p>
-              </div>
-          </li>`
-      )
-      .join("")}`;
+    this.$target.innerHTML += `
+      <ul>
+        ${this.state
+          .map(
+            (post) =>
+              `<li class="post_item" key="${post.posdId}">
+                  <img class="post_img" src="${post.image}" alt="${post.title}">
+                  <div class="content">
+                    <h1 class="post_title">${post.title}</h1>
+                    <p class="post_content">${post.content}</p>
+                  </div>
+              </li>`
+          )
+          .join("")}
+        </ul>
+      `;
   };
 
   this.render();

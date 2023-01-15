@@ -1,13 +1,12 @@
 import { dummy } from "../api/index.js";
 import PostList from "../components/PostList.js";
 
-export default function Main({ $target }) {
-  const $section = document.createElement("section");
-  $target.appendChild($section);
+export default function Main($target) {
+  this.$target = $target;
 
   this.render = () => {
-    $section.innerHTML = `
-      <a class="btn_new_post">
+    this.$target.innerHTML = `
+      <a href="/upload" class="btn_new_post">
         <svg
           width="24"
           height="24"
@@ -33,7 +32,7 @@ export default function Main({ $target }) {
     const posts = await dummy("/");
     this.setState(posts);
 
-    new PostList({ $target: $section, init: this.state });
+    new PostList({ $target: this.$target, init: this.state });
   };
 
   this.render();
