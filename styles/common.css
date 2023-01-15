@@ -1,0 +1,64 @@
+@import "./reset.css";
+
+body {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  padding: 2rem;
+  font-weight: bold;
+  font-size: 1.4rem;
+  position: sticky;
+  top: 0;
+}
+
+.btn_new_post {
+  color: #ffffff;
+  background-color: #bb2649;
+  border-radius: 0.5rem;
+  padding: 1.4rem 0;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+li {
+  border: 1.5px solid #e2e2e2;
+  border-radius: 0.5rem;
+  align-items: center;
+  gap: 1rem;
+  display: flex;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.brok {
+  width: 76px;
+  height: 76px;
+  background-color: red;
+}
+
+.h1 {
+  font-weight: bold;
+}
+
+.p {
+  font-size: 13px;
+  color: #777777;
+}
