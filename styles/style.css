@@ -9,6 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 0 1rem;
 }
 
 a {
@@ -28,6 +29,7 @@ header {
   font-size: 1.4rem;
   position: sticky;
   top: 0;
+  background-color: #ffffff;
 }
 
 /* Main page */
@@ -113,6 +115,13 @@ ul {
 
 /* upload page */
 
+.upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 85vh;
+}
+
 .btn_img_upload {
   width: 100%;
   border: 1.5px solid #e2e2e2;
@@ -121,10 +130,10 @@ ul {
   padding: 3rem 0;
 }
 
-form {
+.form_wrap {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .form_title {
@@ -133,19 +142,20 @@ form {
   font-weight: bold;
 }
 
-form > input {
+.form_wrap > input {
   border: none;
   border-bottom: 1px solid black;
   padding: 13px 15px;
 }
 
-form > textarea {
+.form_wrap > textarea {
   border: none;
   min-height: 100px;
   padding: 13px 15px;
 }
 
 .btn_form {
+  width: 100%;
   border: none;
   color: #ffffff;
   background-color: #bb2649;
