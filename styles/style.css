@@ -1,9 +1,11 @@
 @import "./reset.css";
 
 body {
-  max-width: 360px;
+  max-width: 640px;
   margin: 0 auto;
 }
+
+/* Header component */
 
 header {
   display: flex;
@@ -16,6 +18,8 @@ header {
   top: 0;
 }
 
+/* Main page */
+
 .btn_new_post {
   color: #ffffff;
   background-color: #bb2649;
@@ -26,6 +30,7 @@ header {
   justify-content: center;
   align-items: center;
   gap: 0.4rem;
+  cursor: pointer;
 }
 
 section {
