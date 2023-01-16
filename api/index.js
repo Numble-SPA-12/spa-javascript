@@ -49,5 +49,29 @@ export const dummy = async (url) => {
         updatedAt: "2023-01-05T17:29:24.216+00:00",
       },
     ];
+  } else if (url === "/post") {
+    return {
+      post: {
+        postId: "2",
+        title: "게시글",
+        content: "안녕하세요, 게시글 입니다",
+        image:
+          "https://img.freepik.com/premium-photo/small-tricolor-kitten-meowsfloor-room_457211-10960.jpg?w=1060",
+        createdAt: "2023-01-05T17:29:24.216+00:00",
+        updatedAt: "2023-01-05T17:29:24.216+00:00",
+      },
+      comments: [
+        {
+          commentId: "1",
+          postId: "1",
+          content: "댓글입니다.",
+        },
+        {
+          commentId: "1",
+          postId: "1",
+          content: "댓글입니다.",
+        },
+      ],
+    };
   }
 };
