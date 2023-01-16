@@ -40,7 +40,7 @@ export default function Upload($target) {
         ></textarea>
       </div>
       <button class="btn_form" type="submit">
-        제출
+        등록하기
       </button>
     </section>
     `;
