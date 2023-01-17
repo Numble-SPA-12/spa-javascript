@@ -12,12 +12,6 @@ body {
   padding: 0 1rem;
 }
 
-a {
-  cursor: pointer;
-  text-decoration: none;
-  color: #000000;
-}
-
 /* Header component */
 
 header {
@@ -30,6 +24,10 @@ header {
   position: sticky;
   top: 0;
   background-color: #ffffff;
+}
+
+header > h1 {
+  cursor: pointer;
 }
 
 /* Main page */

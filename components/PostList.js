@@ -1,9 +1,10 @@
-import { navigate } from "../utils/navigate";
+import { navigate } from "../utils/navigate.js";
 
 export default function PostList({ $target, init }) {
+  this.$target = $target;
   this.state = init;
 
-  $target.addEventListener("click", (e) => {
+  this.$target.addEventListener("click", (e) => {
     if (e.target.classList.contains("post_item")) {
       const targetID = e.target.dataset.id;
       const targetPost = this.state.find((value) => value.postId === targetID);
@@ -17,7 +18,7 @@ export default function PostList({ $target, init }) {
       return;
     }
 
-    $target.innerHTML += `
+    this.$target.innerHTML += `
       <ul>
         ${this.state
           .map(

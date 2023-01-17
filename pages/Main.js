@@ -1,12 +1,19 @@
-import { getPostList } from "../utils/api.js";
 import PostList from "../components/PostList.js";
+import { getPostList } from "../utils/api.js";
+import { navigate } from "../utils/navigate.js";
 
 export default function Main($target) {
   this.$target = $target;
 
+  this.$target.addEventListener("click", (e) => {
+    if (e.target.className === "btn_new_post") {
+      navigate("/upload");
+    }
+  });
+
   this.render = () => {
     this.$target.innerHTML = `
-      <a href="/upload" class="btn_new_post">
+      <div class="btn_new_post">
         <svg
           width="24"
           height="24"
@@ -20,7 +27,7 @@ export default function Main($target) {
           />
         </svg>
         새 글 작성하기
-      </a>
+      </div>
     `;
   };
 
