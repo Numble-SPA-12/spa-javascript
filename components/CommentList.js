@@ -1,5 +1,5 @@
-import { deleteComment } from "../utils/api";
-import { navigate } from "../utils/navigate";
+import { deleteComment } from "../utils/api.js";
+import { navigate } from "../utils/navigate.js";
 
 export default function CommentList({ $target, init }) {
   this.$target = $target;

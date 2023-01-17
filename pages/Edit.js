@@ -1,5 +1,5 @@
-import { editPost } from "../utils/api";
-import { navigate } from "../utils/navigate";
+import { editPost } from "../utils/api.js";
+import { navigate } from "../utils/navigate.js";
 
 export default function Edit($target) {
   this.$target = $target;
