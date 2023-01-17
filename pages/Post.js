@@ -1,4 +1,4 @@
-import { getPostDetail } from "../utils/api.js";
+import { deletePost, getPostDetail } from "../utils/api.js";
 import { navigate } from "../utils/navigate.js";
 
 import CommentList from "../components/CommentList.js";
@@ -24,6 +24,14 @@ export default function Post($target) {
     }
   });
 
+  this.$target.addEventListener("click", async (e) => {
+    if (e.target.className === "post_delete") {
+      if (!confirm("정말로 삭제하시겠어요?")) return;
+
+      await deletePost(postID).then(() => navigate("/"));
+    }
+  });
+
   this.render = () => {
     this.$target.innerHTML = `
       <div class="post_article">
@@ -33,7 +41,7 @@ export default function Post($target) {
         <div>${history.state.content}</div>
       </div>
       <div class="post_edit_wrap">
-        <button>
+        <button class="post_delete">
           <svg
             width="40"
             height="40"

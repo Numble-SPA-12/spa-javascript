@@ -48,3 +48,10 @@ export const editPost = async (id, data) => {
     data,
   });
 };
+
+export const deletePost = async (id) => {
+  return instance({
+    url: `post/${id}`,
+    method: "DELETE",
+  });
+};

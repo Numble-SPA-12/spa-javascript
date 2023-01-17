@@ -224,6 +224,10 @@ ul {
   pointer-events: none;
 }
 
+.post_delete > svg {
+  pointer-events: none;
+}
+
 /* comment component */
 
 .comment {
