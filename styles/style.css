@@ -230,7 +230,7 @@ ul {
 
 /* comment component */
 
-.comment_wrapper {
+.comment_bottom {
   padding-bottom: 10rem;
 }
 
@@ -250,7 +250,7 @@ ul {
   position: fixed;
   bottom: 0;
   padding: 1rem 0;
-  max-width: 640px;
+  max-width: 600px;
   background-color: #ffffff;
   gap: 1rem;
   width: 70%;
