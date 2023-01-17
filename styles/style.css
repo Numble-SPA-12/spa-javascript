@@ -76,18 +76,19 @@ header {
 }
 
 .post_content {
+  width: 200px;
   font-size: 13px;
   color: #777777;
   font-weight: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 ul {
   display: flex;
   flex-direction: column;
-}
-
-li {
-  padding: 0.5rem 0;
+  gap: 1rem;
 }
 
 /* 404 page */
