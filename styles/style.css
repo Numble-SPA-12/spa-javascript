@@ -253,6 +253,7 @@ ul {
   max-width: 640px;
   background-color: #ffffff;
   gap: 1rem;
+  width: 70%;
 }
 
 #comment_text {
