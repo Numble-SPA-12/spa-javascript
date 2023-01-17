@@ -11,4 +11,14 @@ export default function Router($target) {
   };
 
   route();
+
+  window.addEventListener("click", (e) => {
+    e.preventDefault();
+    const { href } = e.target;
+
+    history.pushState(null, "", href.replace(location.origin, ""));
+    route();
+  });
+
+  window.addEventListener("popstate", route);
 }
