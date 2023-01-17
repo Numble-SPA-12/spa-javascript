@@ -30,7 +30,7 @@ export default function Main($target) {
 
   const setPosts = async () => {
     const { data } = await getPostList();
-    this.setState(data.posts);
+    this.setState(data.data.posts);
 
     new PostList({ $target: this.$target, init: this.state });
   };

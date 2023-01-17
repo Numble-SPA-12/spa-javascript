@@ -10,7 +10,7 @@ export default function CommentList({ $target, init }) {
 
     this.$target.innerHTML += `
       <ul>
-        ${this.state.data.comments
+        ${this.state
           .map(
             (comment) =>
               `<li key="${comment.commentId}">

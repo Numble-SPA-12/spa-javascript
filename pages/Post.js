@@ -9,9 +9,11 @@ export default function Post($target) {
     this.state = newState;
   };
 
+  const postID = location.pathname.split("/").slice(-1)[0];
+
   const setPosts = async () => {
-    const comments = await getPostDetail(history.state.postId);
-    this.setState(comments);
+    const { data } = await getPostDetail(postID);
+    this.setState(data.data.comments);
     new CommentList({ $target: this.$target, init: this.state });
   };
 

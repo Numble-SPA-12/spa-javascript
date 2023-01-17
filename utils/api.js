@@ -1,16 +1,20 @@
-export const request = async (url) => {
-  try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}${url}`);
+import axios from "axios";
 
-    if (!res.ok) {
-      throw new Error("API Call Fail");
-    }
+const instance = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+  timeout: 5000,
+});
 
-    return await res.json();
-  } catch (e) {
-    throw Error(e.message);
-  }
+export const getPostList = async () => {
+  return instance({
+    url: "posts",
+    method: "GET",
+  });
 };
 
-export const getPostList = async () => await request("posts");
-export const getPostDetail = async (id) => await request(`post/${id}`);
+export const getPostDetail = async (id) => {
+  return instance({
+    url: `post/${id}`,
+    method: "GET",
+  });
+};
