@@ -55,3 +55,18 @@ export const deletePost = async (id) => {
     method: "DELETE",
   });
 };
+
+export const addComment = async (id, data) => {
+  return instance({
+    url: `comment/${id}`,
+    method: "POST",
+    data,
+  });
+};
+
+export const deleteComment = async (id) => {
+  return instance({
+    url: `comment/${id}`,
+    method: "DELETE",
+  });
+};

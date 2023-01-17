@@ -230,8 +230,49 @@ ul {
 
 /* comment component */
 
+.comment_wrapper {
+  padding-bottom: 10rem;
+}
+
 .comment {
   display: flex;
   justify-content: space-between;
   padding: 0 1rem;
+}
+
+.add_comment > svg {
+  pointer-events: none;
+}
+
+.comment_edit {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  padding: 1rem 0;
+  max-width: 640px;
+  background-color: #ffffff;
+  gap: 1rem;
+}
+
+#comment_text {
+  min-width: 250px;
+  width: 90%;
+  padding: 13px 15px;
+  background-color: #e2e2e2;
+  border: none;
+}
+
+.add_comment {
+  border: none;
+  cursor: pointer;
+}
+
+.comment_delete {
+  background: none;
+  border: none;
+}
+
+.comment_delete > svg {
+  pointer-events: none;
 }

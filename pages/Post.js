@@ -1,4 +1,4 @@
-import { deletePost, getPostDetail } from "../utils/api.js";
+import { deletePost, getPostDetail, addComment } from "../utils/api.js";
 import { navigate } from "../utils/navigate.js";
 
 import CommentList from "../components/CommentList.js";
@@ -29,6 +29,18 @@ export default function Post($target) {
       if (!confirm("정말로 삭제하시겠어요?")) return;
 
       await deletePost(postID).then(() => navigate("/"));
+    }
+  });
+
+  this.$target.addEventListener("click", async (e) => {
+    const comment = document.getElementById("comment_text").value;
+    if (e.target.className === "add_comment") {
+      if (comment === "") {
+        alert("댓글 내용을 입력해 주세요");
+        return;
+      }
+
+      await addComment(postID, { content: comment }).then(() => navigate("/"));
     }
   });
 
@@ -72,9 +84,15 @@ export default function Post($target) {
           </svg>
         </button>
       </div>
-      <section class="comment">
-        <ul></ul>
-      </section>
+      <div class="comment_edit">
+        <input id="comment_text" />
+        <button class="add_comment">
+          <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <polygon class="cls-1" points="19 31 13 19 1 13 31 1 19 31" />
+            <line class="cls-1" x1="13" x2="25" y1="19" y2="7" />
+          </svg>
+        </button>
+      </div>
     `;
   };
 
