@@ -2,8 +2,6 @@ export default function CommentList({ $target, init }) {
   this.$target = $target;
   this.state = init;
 
-  console.log(init);
-
   this.render = () => {
     if (!this.state) {
       alert("댓글을 불러오지 못했어요");
@@ -12,7 +10,7 @@ export default function CommentList({ $target, init }) {
 
     this.$target.innerHTML += `
       <ul>
-        ${this.state.comments
+        ${this.state.data.comments
           .map(
             (comment) =>
               `<li key="${comment.commentId}">
