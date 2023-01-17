@@ -41,7 +41,6 @@ export default function Upload($target) {
         image: this.state.image,
       })
         .then(({ data }) => {
-          console.log(data.data);
           alert("게시글을 추가했어요");
           navigate(`/post/${data.data.postId}`, {
             ...data.data,
