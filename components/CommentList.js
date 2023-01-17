@@ -1,26 +1,7 @@
-import { deleteComment } from "../utils/api.js";
-import { navigate } from "../utils/navigate.js";
-
-export default function CommentList({ $target, init }) {
-  this.$target = $target;
-  this.state = init;
-
-  this.$target.addEventListener("click", async (e) => {
-    if (e.target.className === "comment_delete") {
-      const targetID = e.target.dataset.id;
-      await deleteComment(targetID).then(() => navigate("/"));
-    }
-  });
-
-  this.render = () => {
-    if (!this.state) {
-      alert("댓글을 불러오지 못했어요");
-      return;
-    }
-
-    this.$target.innerHTML += `
-      <ul class="comment_wrapper">
-        ${this.state
+export const CommentList = (state) => {
+  return `
+      <ul>
+        ${state
           .map(
             (comment) =>
               `<li>
@@ -46,8 +27,6 @@ export default function CommentList({ $target, init }) {
           )
           .join("")}
         </ul>
+        <div class="comment_bottom"></div>
       `;
-  };
-
-  this.render();
-}
+};

@@ -1,26 +1,7 @@
-import { navigate } from "../utils/navigate.js";
-
-export default function PostList({ $target, init }) {
-  this.$target = $target;
-  this.state = init;
-
-  this.$target.addEventListener("click", (e) => {
-    if (e.target.classList.contains("post_item")) {
-      const targetID = e.target.dataset.id;
-      const targetPost = this.state.find((value) => value.postId === targetID);
-      navigate(`/post/${targetID}`, targetPost);
-    }
-  });
-
-  this.render = () => {
-    if (!this.state) {
-      alert("게시글을 불러오지 못했어요");
-      return;
-    }
-
-    this.$target.innerHTML += `
+export const PostList = (state) => {
+  return `
       <ul>
-        ${this.state
+        ${state
           .map(
             (post) =>
               `<li class="post_item" data-id="${post.postId}">
@@ -34,7 +15,4 @@ export default function PostList({ $target, init }) {
           .join("")}
         </ul>
       `;
-  };
-
-  this.render();
-}
+};

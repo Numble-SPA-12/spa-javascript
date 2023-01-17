@@ -1,10 +1,16 @@
-import { deletePost, getPostDetail, addComment } from "../utils/api.js";
+import {
+  deletePost,
+  getPostDetail,
+  addComment,
+  deleteComment,
+} from "../utils/api.js";
 import { navigate } from "../utils/navigate.js";
 
-import CommentList from "../components/CommentList.js";
+import { CommentList } from "../components/CommentList.js";
 
 export default function Post($target) {
   this.$target = $target;
+  this.state = [];
 
   this.setState = (newState) => {
     this.state = newState;
@@ -12,11 +18,10 @@ export default function Post($target) {
 
   const postID = location.pathname.split("/").slice(-1)[0];
 
-  const setPosts = async () => {
-    const { data } = await getPostDetail(postID);
+  getPostDetail(postID).then(({ data }) => {
     this.setState(data.data.comments);
-    new CommentList({ $target: this.$target, init: this.state });
-  };
+    this.render();
+  });
 
   this.$target.addEventListener("click", (e) => {
     if (e.target.className === "post_edit") {
@@ -41,6 +46,13 @@ export default function Post($target) {
       }
 
       await addComment(postID, { content: comment }).then(() => navigate("/"));
+    }
+  });
+
+  this.$target.addEventListener("click", async (e) => {
+    if (e.target.className === "comment_delete") {
+      const targetID = e.target.dataset.id;
+      await deleteComment(targetID).then(() => navigate("/"));
     }
   });
 
@@ -85,6 +97,7 @@ export default function Post($target) {
           </svg>
         </button>
       </div>
+      ${CommentList(this.state)}
       <div class="comment_edit">
         <input id="comment_text" />
         <button class="add_comment">
@@ -97,6 +110,5 @@ export default function Post($target) {
     `;
   };
 
-  setPosts();
   this.render();
 }

@@ -1,13 +1,31 @@
-import PostList from "../components/PostList.js";
+import { PostList } from "../components/PostList.js";
 import { getPostList } from "../utils/api.js";
 import { navigate } from "../utils/navigate.js";
 
 export default function Main($target) {
   this.$target = $target;
+  this.state = [];
+
+  this.setState = (newState) => {
+    this.state = newState;
+  };
+
+  getPostList().then(({ data }) => {
+    this.setState(data.data.posts);
+    this.render();
+  });
 
   this.$target.addEventListener("click", (e) => {
     if (e.target.className === "btn_new_post") {
       navigate("/upload");
+    }
+  });
+
+  this.$target.addEventListener("click", (e) => {
+    if (e.target.classList.contains("post_item")) {
+      const targetID = e.target.dataset.id;
+      const targetPost = this.state.find((value) => value.postId === targetID);
+      navigate(`/post/${targetID}`, targetPost);
     }
   });
 
@@ -28,20 +46,9 @@ export default function Main($target) {
         </svg>
         새 글 작성하기
       </div>
+      ${PostList(this.state)}
     `;
   };
 
-  this.setState = (newState) => {
-    this.state = newState;
-  };
-
-  const setPosts = async () => {
-    const { data } = await getPostList();
-    this.setState(data.data.posts);
-
-    new PostList({ $target: this.$target, init: this.state });
-  };
-
   this.render();
-  setPosts();
 }
