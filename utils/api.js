@@ -40,3 +40,11 @@ export const getRandomImage = async () => {
     method: "GET",
   });
 };
+
+export const editPost = async (id, data) => {
+  return instance({
+    url: `post/${id}`,
+    method: "Patch",
+    data,
+  });
+};
