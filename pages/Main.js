@@ -1,4 +1,4 @@
-import { dummy } from "../api/index.js";
+import { getPostList } from "../utils/api.js";
 import PostList from "../components/PostList.js";
 
 export default function Main($target) {
@@ -29,8 +29,8 @@ export default function Main($target) {
   };
 
   const setPosts = async () => {
-    const posts = await dummy("/");
-    this.setState(posts);
+    const { data } = await getPostList();
+    this.setState(data.posts);
 
     new PostList({ $target: this.$target, init: this.state });
   };

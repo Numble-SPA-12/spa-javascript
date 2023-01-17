@@ -1,16 +1,27 @@
-import { dummy } from "../api/index.js";
+import { getPostDetail } from "../utils/api.js";
+
 import CommentList from "../components/CommentList.js";
 
 export default function Post($target) {
   this.$target = $target;
 
+  this.setState = (newState) => {
+    this.state = newState;
+  };
+
+  const setPosts = async () => {
+    const comments = await getPostDetail(history.state.postId);
+    this.setState(comments);
+    new CommentList({ $target: this.$target, init: this.state });
+  };
+
   this.render = () => {
     this.$target.innerHTML = `
       <div class="post_article">
-      <img src="https://img.freepik.com/premium-photo/small-tricolor-kitten-meowsfloor-room_457211-10960.jpg?w=1060" width="100%" height="265px" />
-        <h1 class="post_title">신년 계획</h1>
-        <span class="post_date">2023.01.10</span>
-        <div>2023 계획 세우셨나요? 저는 아직 못세웠어요.</div>
+      <img src=${history.state.image} width="100%" height="265px" />
+        <h1 class="post_title">${history.state.title}</h1>
+        <span class="post_date">${history.state.createdAt}</span>
+        <div>${history.state.content}</div>
       </div>
       <div class="post_edit_icon">
         <button>
@@ -50,17 +61,6 @@ export default function Post($target) {
     `;
   };
 
-  this.setState = (newState) => {
-    this.state = newState;
-  };
-
-  const setPosts = async () => {
-    const comments = await dummy("/post");
-    this.setState(comments);
-
-    new CommentList({ $target: this.$target, init: this.state });
-  };
-
-  this.render();
   setPosts();
+  this.render();
 }
