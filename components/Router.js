@@ -10,15 +10,16 @@ export default function Router($target) {
     new TargetPage($target);
   };
 
-  route();
+  window.addEventListener("ROUTE_CHANGE", ({ detail }) => {
+    const { state, to, isReplace } = detail;
 
-  window.addEventListener("click", (e) => {
-    e.preventDefault();
-    const { href } = e.target;
+    if (isReplace || to === location.pathname)
+      history.replaceState(state, "", to);
+    else history.pushState(state, "", to);
 
-    history.pushState(null, "", href.replace(location.origin, ""));
     route();
   });
-
   window.addEventListener("popstate", route);
+
+  route();
 }

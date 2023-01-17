@@ -1,6 +1,15 @@
+import { navigate } from "../utils/navigate";
+
 export default function PostList({ $target, init }) {
-  this.$target = $target;
   this.state = init;
+
+  $target.addEventListener("click", (e) => {
+    if (e.target.classList.contains("post_item")) {
+      const targetID = e.target.dataset.id;
+      const targetPost = this.state.find((value) => value.postId === targetID);
+      navigate(`/post/${targetID}`, targetPost);
+    }
+  });
 
   this.render = () => {
     if (!this.state) {
@@ -8,19 +17,17 @@ export default function PostList({ $target, init }) {
       return;
     }
 
-    this.$target.innerHTML += `
+    $target.innerHTML += `
       <ul>
         ${this.state
           .map(
             (post) =>
-              `<li key="${post.postId}">
-                <a class="post_item" href="/post/${post.postId}">
-                  <img class="post_img" src="${post.image}" alt="${post.title}">
-                  <div class="content">
-                    <h1 class="post_title">${post.title}</h1>
-                    <p class="post_content">${post.content}</p>
-                  </div>
-                </a>
+              `<li class="post_item" data-id="${post.postId}">
+                <img class="post_img" src="${post.image}" alt="${post.title}">
+                <div class="content">
+                  <h1 class="post_title">${post.title}</h1>
+                  <p class="post_content">${post.content}</p>
+                </div>
               </li>`
           )
           .join("")}
