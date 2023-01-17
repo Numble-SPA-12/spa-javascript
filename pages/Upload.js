@@ -20,8 +20,8 @@ export default function Upload($target) {
   });
 
   this.$target.addEventListener("click", async (e) => {
-    const title = document.getElementById("post_title").value;
-    const content = document.getElementById("post_content").value;
+    const title = document.getElementById("post_title")?.value ?? "";
+    const content = document.getElementById("post_content")?.value ?? "";
     if (e.target.className === "btn_form") {
       if (this.state.image === "") {
         alert("위 이미지를 클릭하여 랜덤 이미지를 넣어주세요");

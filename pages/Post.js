@@ -33,7 +33,7 @@ export default function Post($target) {
   });
 
   this.$target.addEventListener("click", async (e) => {
-    const comment = document.getElementById("comment_text").value;
+    const comment = document.getElementById("comment_text")?.value ?? "";
     if (e.target.className === "add_comment") {
       if (comment === "") {
         alert("댓글 내용을 입력해 주세요");
@@ -47,10 +47,11 @@ export default function Post($target) {
   this.render = () => {
     this.$target.innerHTML = `
       <div class="post_article">
-      <img src=${history.state.image} width="100%" height="265px" />
-        <h1 class="post_title">${history.state.title}</h1>
-        <span class="post_date">${history.state.createdAt}</span>
-        <div>${history.state.content}</div>
+      <img src="${history.state?.image}"
+        width="100%" height="265px" alt="${history.state?.title}" />
+        <h1 class="post_title">${history.state?.title}</h1>
+        <span class="post_date">${history.state?.createdAt}</span>
+        <div>${history.state?.content}</div>
       </div>
       <div class="post_edit_wrap">
         <button class="post_delete">

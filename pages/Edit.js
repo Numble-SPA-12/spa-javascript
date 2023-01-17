@@ -5,8 +5,8 @@ export default function Edit($target) {
   this.$target = $target;
 
   this.$target.addEventListener("click", async (e) => {
-    const title = document.getElementById("post_title").value;
-    const content = document.getElementById("post_content").value;
+    const title = document.getElementById("post_title")?.value ?? "";
+    const content = document.getElementById("post_content")?.value ?? "";
     if (e.target.className === "btn_form") {
       if (title === "") {
         alert("제목을 입력해 주세요");
@@ -16,10 +16,10 @@ export default function Edit($target) {
         alert("내용을 입력해 주세요");
       }
 
-      await editPost(history.state.postId, {
+      await editPost(history.state?.postId, {
         title,
         content,
-        image: history.state.image,
+        image: history.state?.image,
       })
         .then(({ data }) => {
           alert("게시글을 수정했어요");
@@ -58,7 +58,7 @@ export default function Edit($target) {
         </button>
         <label class="form_title">제목</label>
         <input
-          value=${history.state.title}
+          value="${history.state?.title}"
           type="text"
           id="post_title"
           autoFocus
@@ -71,7 +71,7 @@ export default function Edit($target) {
           id="post_content"
           maxLength="500"
           placeholder="글 내용을 입력해 주세요"
-        >${history.state.content}</textarea>
+        >${history.state?.content}</textarea>
       </div>
       <button class="btn_form" type="submit">
         수정하기
