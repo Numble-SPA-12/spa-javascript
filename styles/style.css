@@ -73,6 +73,11 @@ header > h1 {
   cursor: pointer;
 }
 
+.post_item img,
+.post_item .content {
+  pointer-events: none;
+}
+
 .post_title {
   font-weight: bold;
 }
@@ -200,7 +205,7 @@ ul {
   font-size: 0.9rem;
 }
 
-.post_edit_icon {
+.post_edit_wrap {
   display: flex;
   flex-direction: row-reverse;
   gap: 1rem;
@@ -208,11 +213,15 @@ ul {
   padding: 1.4rem 1rem 1.4rem 0;
 }
 
-.post_edit_icon button {
+.post_edit_wrap button {
   border: none;
   background-color: #ffffff;
   padding: 0;
   cursor: pointer;
+}
+
+.post_edit > svg {
+  pointer-events: none;
 }
 
 /* comment component */
