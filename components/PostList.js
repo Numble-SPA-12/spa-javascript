@@ -1,6 +1,6 @@
 export const PostList = (state) => {
   return `
-      <ul>
+      <ul class="post_wrapper">
         ${state
           .map(
             (post) =>
@@ -14,5 +14,6 @@ export const PostList = (state) => {
           )
           .join("")}
         </ul>
+        <div class="post_bottom"></div>
       `;
 };

@@ -51,6 +51,10 @@ header > h1 {
 
 /* PostList component */
 
+.post_wrapper {
+  padding-bottom: 5rem;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -230,7 +234,7 @@ ul {
 
 /* comment component */
 
-.comment_bottom {
+.comment_wrapper {
   padding-bottom: 10rem;
 }
 

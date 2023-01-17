@@ -1,6 +1,6 @@
 export const CommentList = (state) => {
   return `
-      <ul>
+      <ul class="comment_wrapper">
         ${state
           .map(
             (comment) =>
@@ -27,6 +27,5 @@ export const CommentList = (state) => {
           )
           .join("")}
         </ul>
-        <div class="comment_bottom"></div>
       `;
 };
