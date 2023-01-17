@@ -1,5 +1,56 @@
+import { addPost, getRandomImage } from "../utils/api.js";
+import { navigate } from "../utils/navigate.js";
+
 export default function Upload($target) {
   this.$target = $target;
+  this.state = { image: "" };
+
+  this.setState = (newState) => {
+    this.state = newState;
+  };
+
+  this.$target.addEventListener("click", async (e) => {
+    if (e.target.className === "btn_img_upload") {
+      if (e.target.classList.contains("done")) return;
+
+      document.querySelector(".btn_img_upload").classList.add("done");
+      const { data } = await getRandomImage();
+      this.setState({ image: data.urls.regular });
+    }
+  });
+
+  this.$target.addEventListener("click", async (e) => {
+    const title = document.getElementById("post_title").value;
+    const content = document.getElementById("post_content").value;
+    if (e.target.className === "btn_form") {
+      if (this.state.image === "") {
+        alert("위 이미지를 클릭하여 랜덤 이미지를 넣어주세요");
+        return;
+      }
+      if (title === "") {
+        alert("제목을 입력해 주세요");
+        return;
+      }
+      if (content === "") {
+        alert("내용을 입력해 주세요");
+      }
+
+      await addPost({
+        title,
+        content,
+        image: this.state.image,
+      })
+        .then(({ data }) => {
+          console.log(data.data);
+          alert("게시글을 추가했어요");
+          navigate(`/post/${data.data.postId}`, {
+            ...data.data,
+            createdAt: "방금 전",
+          });
+        })
+        .catch(() => alert("다시 시도해 주세요"));
+    }
+  });
 
   this.render = () => {
     this.$target.innerHTML = `
@@ -26,7 +77,7 @@ export default function Upload($target) {
         <label class="form_title">제목</label>
         <input
           type="text"
-          id="title"
+          id="post_title"
           autoFocus
           maxLength="50"
           placeholder="글 제목을 입력해 주세요"
@@ -34,7 +85,7 @@ export default function Upload($target) {
         <label class="form_title">내용</label>
         <textarea
           type="text"
-          id="text"
+          id="post_content"
           maxLength="500"
           placeholder="글 내용을 입력해 주세요"
         ></textarea>

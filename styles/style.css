@@ -12,6 +12,10 @@ body {
   padding: 0 1rem;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 /* Header component */
 
 header {
@@ -130,6 +134,13 @@ ul {
   border-radius: 0.5rem;
   background: #ffffff;
   padding: 3rem 0;
+  cursor: pointer;
+}
+
+.done {
+  cursor: default;
+  border: 1.5px solid #bb2649;
+  background: #bb2649;
 }
 
 .form_wrap {
