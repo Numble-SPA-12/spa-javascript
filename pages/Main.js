@@ -1,6 +1,7 @@
 import { PostList } from "../components/PostList.js";
 import { getPostList } from "../utils/api.js";
 import { navigate } from "../utils/navigate.js";
+import { isImageValidity } from "../utils/index.js";
 
 export default function Main($target) {
   this.$target = $target;
@@ -26,7 +27,12 @@ export default function Main($target) {
     if (e.target.classList.contains("post_item")) {
       const targetID = e.target.dataset.id;
       const targetPost = this.state.find((value) => value.postId === targetID);
-      navigate(`/post/${targetID}`, targetPost);
+      navigate(`/post/${targetID}`, {
+        ...targetPost,
+        image: isImageValidity(targetPost.image)
+          ? targetPost.image
+          : "/numble_post_resize.avif",
+      });
     }
   });
 

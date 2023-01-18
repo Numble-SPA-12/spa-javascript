@@ -6,3 +6,15 @@ export const printKorDate = (date) => {
     day: "numeric",
   });
 };
+
+export const isImageValidity = (imgURL) => {
+  if (
+    typeof imgURL === "undefined" ||
+    imgURL === null ||
+    imgURL === "" ||
+    imgURL === "undefined" ||
+    imgURL === "https://source.unsplash.com/random/360×360"
+  )
+    return false;
+  return true;
+};

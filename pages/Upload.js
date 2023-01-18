@@ -41,13 +41,12 @@ export default function Upload($target) {
         image: this.state.image,
       })
         .then(({ data }) => {
-          alert("게시글을 추가했어요");
           navigate(`/post/${data.data.postId}`, {
             ...data.data,
             createdAt: "방금 전",
           });
         })
-        .catch(() => alert("다시 시도해 주세요"));
+        .catch(() => alert("내용을 바꾸어서 다시 시도해 주세요"));
     }
   });
 

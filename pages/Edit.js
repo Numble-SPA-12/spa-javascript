@@ -1,34 +1,63 @@
 import { editPost } from "../utils/api.js";
 import { navigate } from "../utils/navigate.js";
+import { getRandomImage } from "../utils/api.js";
 
 export default function Edit($target) {
   this.$target = $target;
+  this.state = {
+    title: history.state?.title,
+    content: history.state?.content,
+    image: history.state.image,
+  };
+
+  this.setState = (newState) => {
+    this.state = newState;
+  };
+
+  this.$target.addEventListener("keydown", (e) => {
+    if (e.target.id === "post_title") {
+      this.setState({
+        ...this.state,
+        title: document.getElementById("post_title")?.value,
+      });
+    }
+  });
+
+  this.$target.addEventListener("keydown", (e) => {
+    if (e.target.id === "post_content") {
+      this.setState({
+        ...this.state,
+        content: document.getElementById("post_content")?.value,
+      });
+    }
+  });
 
   this.$target.addEventListener("click", async (e) => {
-    const title = document.getElementById("post_title")?.value ?? "";
-    const content = document.getElementById("post_content")?.value ?? "";
+    if (e.target.className === "btn_img_upload") {
+      const { data } = await getRandomImage();
+      this.setState({
+        ...this.state,
+        image: data.urls.regular,
+      });
+      this.render();
+    }
+  });
+
+  this.$target.addEventListener("click", async (e) => {
     if (e.target.className === "btn_form") {
-      if (title === "") {
+      if (this.state.title === "") {
         alert("제목을 입력해 주세요");
         return;
       }
-      if (content === "") {
+      if (this.state.content === "") {
         alert("내용을 입력해 주세요");
       }
 
-      await editPost(history.state?.postId, {
-        title,
-        content,
-        image: history.state?.image,
-      })
+      await editPost(history.state?.postId, this.state)
         .then(({ data }) => {
-          alert("게시글을 수정했어요");
-          navigate(`/post/${data.data.post.postId}`, {
-            ...data.data.post,
-            createdAt: "방금 전",
-          });
+          navigate(`/post/${data.data.post.postId}`, data.data.post);
         })
-        .catch((e) => {
+        .catch(() => {
           alert("다시 시도해 주세요");
         });
     }
@@ -38,7 +67,7 @@ export default function Edit($target) {
     this.$target.innerHTML = `
       <section class="upload">
       <div class="form_wrap">
-        <button class="btn_img_upload">
+        <button class="btn_img_upload" style="background-image: url(${this.state.image});" >
           <svg
             width="46"
             height="46"
@@ -58,7 +87,7 @@ export default function Edit($target) {
         </button>
         <label class="form_title">제목</label>
         <input
-          value="${history.state?.title}"
+          value="${this.state.title}"
           type="text"
           id="post_title"
           autoFocus
@@ -71,7 +100,7 @@ export default function Edit($target) {
           id="post_content"
           maxLength="500"
           placeholder="글 내용을 입력해 주세요"
-        >${history.state?.content}</textarea>
+        >${this.state.content}</textarea>
       </div>
       <button class="btn_form" type="submit">
         수정하기
