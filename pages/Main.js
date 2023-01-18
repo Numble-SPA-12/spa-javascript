@@ -10,10 +10,11 @@ export default function Main($target) {
     this.state = newState;
   };
 
-  getPostList().then(({ data }) => {
+  const postSet = async () => {
+    const { data } = await getPostList();
     this.setState(data.data.posts);
     this.render();
-  });
+  };
 
   this.$target.addEventListener("click", (e) => {
     if (e.target.className === "btn_new_post") {
@@ -51,4 +52,5 @@ export default function Main($target) {
   };
 
   this.render();
+  postSet();
 }

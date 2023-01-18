@@ -7,6 +7,7 @@ import {
 import { navigate } from "../utils/navigate.js";
 
 import { CommentList } from "../components/CommentList.js";
+import { printKorDate } from "../utils/index.js";
 
 export default function Post($target) {
   this.$target = $target;
@@ -18,10 +19,11 @@ export default function Post($target) {
 
   const postID = location.pathname.split("/").slice(-1)[0];
 
-  getPostDetail(postID).then(({ data }) => {
+  const postDetailSet = async () => {
+    const { data } = await getPostDetail(postID);
     this.setState(data.data.comments);
     this.render();
-  });
+  };
 
   this.$target.addEventListener("click", (e) => {
     if (e.target.className === "post_edit") {
@@ -62,7 +64,7 @@ export default function Post($target) {
       <img src="${history.state?.image}"
         width="100%" height="265px" alt="${history.state?.title}" />
         <h1 class="post_title">${history.state?.title}</h1>
-        <span class="post_date">${history.state?.createdAt}</span>
+        <span class="post_date">${printKorDate(history.state?.createdAt)}</span>
         <div>${history.state?.content}</div>
       </div>
       <div class="post_edit_wrap">
@@ -111,4 +113,5 @@ export default function Post($target) {
   };
 
   this.render();
+  postDetailSet();
 }
