@@ -33,8 +33,6 @@ export default function Post($target) {
 
   this.$target.addEventListener("click", async (e) => {
     if (e.target.className === "post_delete") {
-      if (!confirm("정말로 삭제하시겠어요?")) return;
-
       await deletePost(postID).then(() => navigate("/"));
     }
   });
@@ -47,14 +45,16 @@ export default function Post($target) {
         return;
       }
 
-      await addComment(postID, { content: comment }).then(() => navigate("/"));
+      await addComment(postID, { content: comment }).then(() =>
+        postDetailSet()
+      );
     }
   });
 
   this.$target.addEventListener("click", async (e) => {
     if (e.target.className === "comment_delete") {
       const targetID = e.target.dataset.id;
-      await deleteComment(targetID).then(() => navigate("/"));
+      await deleteComment(targetID).then(() => postDetailSet());
     }
   });
 

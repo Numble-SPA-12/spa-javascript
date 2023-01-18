@@ -11,15 +11,15 @@ export default function Router($target) {
   };
 
   window.addEventListener("ROUTE_CHANGE", ({ detail }) => {
-    const { state, to, isReplace } = detail;
+    const { state, to } = detail;
 
-    if (isReplace || to === location.pathname)
-      history.replaceState(state, "", to);
-    else history.pushState(state, "", to);
-
+    history.pushState(state, "", to);
     route();
   });
-  window.addEventListener("popstate", route);
+
+  window.addEventListener("popstate", () => {
+    route();
+  });
 
   route();
 }

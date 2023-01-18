@@ -5,7 +5,7 @@ import Upload from "../pages/Upload.js";
 
 export const routes = [
   { path: /^\/$/, element: Main },
-  { path: /^\/post\/[\w]+$/, element: Post },
+  { path: /^\/post\/[\d]+$/, element: Post },
   { path: /^\/upload$/, element: Upload },
-  { path: /^\/edit\/[\w]+$/, element: Edit },
+  { path: /^\/edit\/[\d]+$/, element: Edit },
 ];

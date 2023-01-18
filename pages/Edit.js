@@ -58,7 +58,7 @@ export default function Edit($target) {
           navigate(`/post/${data.data.post.postId}`, data.data.post);
         })
         .catch(() => {
-          alert("다시 시도해 주세요");
+          navigate("/");
         });
     }
   });

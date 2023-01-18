@@ -46,7 +46,7 @@ export default function Upload($target) {
             createdAt: "방금 전",
           });
         })
-        .catch(() => alert("내용을 바꾸어서 다시 시도해 주세요"));
+        .catch(() => navigate("/"));
     }
   });
 

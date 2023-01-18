@@ -1,6 +1,6 @@
-export const navigate = (to, state = null, isReplace = false) => {
+export const navigate = (to, state = null) => {
   const historyChangeEvent = new CustomEvent("ROUTE_CHANGE", {
-    detail: { state, to, isReplace },
+    detail: { state, to },
   });
 
   dispatchEvent(historyChangeEvent);
